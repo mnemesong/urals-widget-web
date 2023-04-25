@@ -1,0 +1,13 @@
+{
+    "name": "urals-widget-web",
+    "url" : "https://github.com/mnemesong/urals-widget-web",
+    "license": "MIT",
+    "tags": ["haxe", "widget"],
+    "description": "Abstractions and helper tools for making widgets",
+    "version": "0.0.1",
+    "releasenote": "Release",
+    "contributors": ["Anatoly_Starodubtsev"],
+    "dependencies": {
+    },
+    "classPath": "src/"
+  }

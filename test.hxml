@@ -1,0 +1,4 @@
+--library sneaker
+-cp src
+-cp test
+--run UralsWidgetWebTest.hx
