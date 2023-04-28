@@ -4,8 +4,8 @@
     "license": "MIT",
     "tags": ["haxe", "widget"],
     "description": "Abstractions and helper tools for making widgets",
-    "version": "0.0.1",
-    "releasenote": "Release",
+    "version": "0.1.1",
+    "releasenote": "Rework widget as a class",
     "contributors": ["Anatoly_Starodubtsev"],
     "dependencies": {
       "urals-id-renderer": ""

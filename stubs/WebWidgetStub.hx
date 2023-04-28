@@ -2,6 +2,9 @@ package;
 
 import urals.web.AbstractWebWidget;
 
+/**
+	Stub of AbstractWebWidget
+**/
 class WebWidgetStub<Id> extends AbstractWebWidget<{s: String}, Id> 
 {
 
