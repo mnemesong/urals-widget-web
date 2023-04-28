@@ -1,4 +1,6 @@
 --library sneaker
+--library urals-id-renderer
 -cp src
+-cp stubs
 -cp test
---run UralsWidgetWebTest.hx
+--run Main
