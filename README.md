@@ -2,7 +2,8 @@
 
 
 ## Description
-Abstractions and helper tools for making agnostic widgets. 
+Abstractions and helper tools for making agnostic widgets.
+Uses in web client applications and frameworks
 
 
 ## Requirements
@@ -14,112 +15,45 @@ The functionality or it missing of the package for lesser versions has not been 
 ```haxe
 ...
 //-------------------
-// Widget.hx
-import UralsWidgetWeb;
+// WebWidgetStub.hx
+package;
 
-//Model of widget
-typedef TestModel = {
-    a: Int,
-    b: String
-}
+import urals.web.AbstractWebWidget;
 
-//Template function
-function template(classId: String): UralsTemplateWebFunc<TestModel> {
-    return (m: TestModel, id: String) -> {
-        return '<div id="${prefixIdByClassName(classId, id)}" ' 
-            + 'class="${classId}">A: ${Std.string(m.a)}, B: ${m.b}</div>';
-    }
-}
+/**
+	Stub of AbstractWebWidget
+**/
+class WebWidgetStub<Id> extends AbstractWebWidget<{s: String}, Id> 
+{
 
-//Css function
-function css(classId: String): String {
-    return '${classId}: {font-size: 18px;}';
-}
+	public function template(m:{s:String}, id:Id):String {
+		return '<div id="${renderId(id)}" class="${cn}">${m.s}</div>';
+	}
 
-//Widget creating
-inline function widgetFactory(classId: String): UralsWidgetWeb<TestModel> {
-    return createUralsWidgeWebFactory(template, css)(classId);
+	public function getCss():String {
+		return '.${cn} {background-color: #777;}';
+	}
 }
 
 //-------------------
-//Controller.hx
+//AbstractWebWidgetTest.hx
+package;
+
 import Widget.hx
 
-function main() {
-    var testWidget = widgetFactory("test-widget");
-    var model = {
-        a: 12,
-        b: "abbAo",
+class AbstractWebWidgetTest
+{
+    public static function run() {
+        var widget = new WebWidgetStub("block", new IntIdRenderer("bl_"));
+        widget.getCss() //.block {background-color: #777;}
+        widget.template({s: "HellO!"}, 2) //<div id="bl_2" class="block">HellO!</div>
+        widget.getClassId() //block
+        widget.renderId(5) //bl_5
+        widget.parseId("bl_5") //5
     }
-    var html = testWidget.template(model, '1');
-    var css = testWidget.css;
-
-    trace(html);
-    //<div id="testWidget_1" class="test-widget">A: 12, B: abbAo</div>
-
-    trace(css);
-    //'test-widget: {font-size: 18px;}
 }
 ```
 
-
-## API
-```haxe
- /**
-    Function helps to produce UralsWidgetWebFactory, and safe pair lines of code
-**/
-inline function createUralsWidgeWebFactory<M>(
-    templateFactory: UralsTemplateWebFactory<M>,
-    cssFactory: UralsCssWebFactory
-): UralsWidgetWebFactory<M> {...}
-
-/**
-    Function prefixing entity id to id for html-tag
-**/
-@:pure
-inline function prefixIdByClassName(classId: String, id: String): String {...}
-
-/**
-    Function rollbacks result of previous function
-**/
-function essenceIdFromPrefixedId(htmlId: String, className: String): String {...}
-```
-
-
-## Types
-```haxe
-/**
-    Template function thats produces Html by Model (M) and it's id
-**/
-typedef UralsTemplateWebFunc<M> = (m: M, id: String) -> String;
-
-/**
-    Initialized unit of Widget, thats will be used for rendering, 
-    and bundling styles of page
-**/
-typedef UralsWidgetWeb<M> = {
-    template: UralsTemplateWebFunc<M>,
-    css: String,
-    classId: String,
-};
-
-/**
-    Function, thats produce unit of widget uses its unique class identifier
-**/
-typedef UralsWidgetWebFactory<M> = (classId: String) -> UralsWidgetWeb<M>;
-
-/**
-    Function, thats produces tepmplate function uses unique class identifier
-    of widget
-**/
-typedef UralsTemplateWebFactory<M> = (classId: String) -> UralsTemplateWebFunc<M>;
-
-/**
-    Function, thats produces css-style uses unique class identifier
-    of widget
-**/
-typedef UralsCssWebFactory = (classId: String) -> String;
-```
 
 ## Author
 Anatoly Starodubtsev
