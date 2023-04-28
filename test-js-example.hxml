@@ -3,5 +3,6 @@
 --library HtmlParser
 -cp src
 -cp stubs
--cp test
---run Main
+-cp test.js
+--main Main
+--js example/ssr.js
