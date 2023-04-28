@@ -1,6 +1,6 @@
 package urals.web;
 
-interface WebWidgetInterface<M, Id>
+interface WidgetInterface<M, Id>
 {
     /**
         Rendering template function

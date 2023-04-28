@@ -1,6 +1,6 @@
 package urals.web;
 
-abstract class AbstractWebWidget<M, Id> implements WebWidgetInterface<M, Id> 
+abstract class AbstractWidget<M, Id> implements WidgetInterface<M, Id> 
 {
     private var cn: String;
     private var idRenderer: IdRendererInterface<Id>;
