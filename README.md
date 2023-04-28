@@ -18,12 +18,12 @@ The functionality or it missing of the package for lesser versions has not been 
 // WebWidgetStub.hx
 package;
 
-import urals.web.AbstractWebWidget;
+import urals.web.AbstractWidget;
 
 /**
 	Stub of AbstractWebWidget
 **/
-class WebWidgetStub<Id> extends AbstractWebWidget<{s: String}, Id> 
+class WebWidgetStub<Id> extends AbstractWidget<{s: String}, Id> 
 {
 
 	public function template(m:{s:String}, id:Id):String {
