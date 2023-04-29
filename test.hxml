@@ -4,4 +4,5 @@
 -cp src
 -cp stubs
 -cp test
+-D no-deprecation-warnings
 --run Main

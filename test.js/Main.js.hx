@@ -37,6 +37,5 @@ class Main
         rend = new SpaWidgetRenderer(
             new WebWidgetStub("w", new IntIdRenderer("w_")));
         rerender();
-
     }
 }
