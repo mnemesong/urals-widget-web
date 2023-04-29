@@ -1,4 +1,4 @@
-package urals.web;
+package urals.web.js;
 
 import urals.web.WidgetInterface;
 import js.Browser;

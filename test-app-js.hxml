@@ -5,4 +5,4 @@
 -cp stubs
 -cp test.js
 --main Main
---js example/ssr.js
+--js target-app-js/spa.js
