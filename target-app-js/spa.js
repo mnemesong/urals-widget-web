@@ -45,21 +45,19 @@ Main.getAll = function() {
 	}
 	return result;
 };
+Main.rerender = function() {
+	Main.rend.rerenderInSpa(Main.getAll(),function(el) {
+		return "body";
+	},function(elHtml,el) {
+		elHtml.onclick = function(event) {
+			Main.stor.push("Click on me!");
+			Main.rerender();
+		};
+	});
+};
 Main.main = function() {
-	var w = new urals_web_js_SpaWidgetRenderer(new WebWidgetStub("w",new urals_IntIdRenderer("w_")));
-	var rerender = null;
-	rerender = function() {
-		w.rerenderInSpa(Main.getAll(),function(el) {
-			return "body";
-		},function(elHtml,el) {
-			elHtml.onclick = function(event) {
-				Main.stor.push("Click on me!");
-				rerender();
-			};
-			console.log("test.js/Main.js.hx:32:",Main.stor);
-		});
-	};
-	rerender();
+	Main.rend = new urals_web_js_SpaWidgetRenderer(new WebWidgetStub("w",new urals_IntIdRenderer("w_")));
+	Main.rerender();
 };
 var Std = function() { };
 Std.parseInt = function(x) {
